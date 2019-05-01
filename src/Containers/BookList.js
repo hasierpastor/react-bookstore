@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Book from '../Components/Book';
 import AddBookForm from '../Components/AddBookForm';
+import { connect } from 'react-redux';
+import { add, remove } from '../actionCreators';
 // const uuidv4 = require('uuid/v1');
 
 class BookList extends Component {
@@ -24,37 +26,48 @@ class BookList extends Component {
   //   };
   // }
 
-  addBook = book => {
-    book.iban = uuidv4();
-    let newBooks = [...this.state.books, book];
-    this.setState({ books: newBooks });
-  };
+  // addBook = book => {
+  //   book.iban = uuidv4();
+  //   let newBooks = [...this.state.books, book];
+  //   this.setState({ books: newBooks });
+  // };
 
-  removeBook = name => {
-    let filteredBooks = this.state.books.filter(book => {
-      return book.name !== name;
-    });
-    this.setState({ books: filteredBooks });
-  };
+  // removeBook = name => {
+  //   let filteredBooks = this.state.books.filter(book => {
+  //     return book.name !== name;
+  //   });
+  //   this.setState({ books: filteredBooks });
+  // };
 
   render() {
-    const booklist = this.state.books.map(book => {
+    const booklist = this.props.books.map(book => {
       return (
         <Book
           key={book.iban}
           name={book.name}
           author={book.author}
-          remove={this.removeBook}
+          remove={this.props.remove}
         />
       );
     });
     return (
       <div>
-        <AddBookForm add={this.addBook} />
+        <AddBookForm add={this.props.add} />
         {booklist}
       </div>
     );
   }
 }
 
-export default BookList;
+function mapStateToProps(reduxState) {
+  return {
+    books: reduxState.books
+  };
+}
+
+const connectToReduxStore = connect(
+  mapStateToProps,
+  { add, remove }
+);
+
+export default connectToReduxStore(BookList);
