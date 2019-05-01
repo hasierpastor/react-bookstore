@@ -3,6 +3,7 @@ const uuidv4 = require('uuid/v4');
 
 const INITIAL_STATE = { books: [] };
 
+//root reducer is in charge of making changes to redux state and initializing state
 function rootReducer(state = INITIAL_STATE, action) {
   if (action.type === ADD) {
     action.book.iban = uuidv4();

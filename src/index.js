@@ -8,11 +8,13 @@ import rootReducer from './rootReducer';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
+//initialize store
 const store = createStore(
   rootReducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
+//provider tells which store app should communicate with
 ReactDOM.render(
   <Provider store={store}>
     <App />

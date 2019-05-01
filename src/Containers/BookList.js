@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { add, remove } from '../actionCreators';
 // const uuidv4 = require('uuid/v1');
 
+//can be changed to stateless component
 class BookList extends Component {
   // constructor(props) {
   //   super(props);
@@ -26,6 +27,7 @@ class BookList extends Component {
   //   };
   // }
 
+  //WITHOUT REDUX CREATE FUNCS HERE AND PASS DOWN AS PROPS TO CHILD
   // addBook = book => {
   //   book.iban = uuidv4();
   //   let newBooks = [...this.state.books, book];
@@ -59,6 +61,7 @@ class BookList extends Component {
   }
 }
 
+//map redux state to react props (this.props.book)
 function mapStateToProps(reduxState) {
   return {
     books: reduxState.books
@@ -67,7 +70,9 @@ function mapStateToProps(reduxState) {
 
 const connectToReduxStore = connect(
   mapStateToProps,
+  //have destructured mapDispatch to props here => can access using this.props.add
   { add, remove }
 );
 
+//connect return function => run func with component passed in
 export default connectToReduxStore(BookList);
