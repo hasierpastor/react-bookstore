@@ -9,14 +9,14 @@ class AddBookForm extends Component {
     };
   }
 
-  handleSubmit(evt) {
+  handleSubmit = evt => {
     evt.preventDefault();
     this.props.add(this.state);
     this.setState({
       name: '',
       author: ''
     });
-  }
+  };
 
   handleChange = evt => {
     this.setState({ [evt.target.name]: evt.target.value });
@@ -25,7 +25,7 @@ class AddBookForm extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <label htmlFor="name">Author</label>
+        <label htmlFor="name">Name</label>
         <input
           name="name"
           value={this.state.name}
@@ -37,6 +37,7 @@ class AddBookForm extends Component {
           value={this.state.author}
           onChange={this.handleChange}
         />
+        <button>Add a Book!</button>
       </form>
     );
   }
