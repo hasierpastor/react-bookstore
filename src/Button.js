@@ -1,7 +1,8 @@
 import React from 'react';
 
-const Button = method => {
-  if (method === 'add') return <button>+</button>;
-  return <button>-</button>;
-};
+function Button(props) {
+  console.log(props);
+  if (props.method === 'add') return <button onClick={props.action}>+</button>;
+  return <button onClick={props.action}>-</button>;
+}
 export default Button;

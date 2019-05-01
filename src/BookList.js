@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Book from './Book.js';
+import Book from './Book';
 const uuidv4 = require('uuid/v1');
 
 class BookList extends Component {
@@ -23,11 +23,12 @@ class BookList extends Component {
     };
   }
 
-  addBook = book => {
-    book.iban = uuidv4();
-    let newBooks = [...this.state.books, book];
-    this.setState({ books: newBooks });
-  };
+  // addBook = book => {
+  //   book.iban = uuidv4();
+  //   let newBooks = [...this.state.books, book];
+  //   this.setState({ books: newBooks });
+  // };
+
   removeBook = name => {
     let filteredBooks = this.state.books.filter(book => {
       return book.name !== name;
@@ -36,15 +37,16 @@ class BookList extends Component {
   };
 
   render() {
-    const booklist = this.state.books.map(book => (
-      <Book
-        key={book.iban}
-        name={book.name}
-        author={book.author}
-        add={this.addBook}
-        remove={this.removeBook}
-      />
-    ));
+    const booklist = this.state.books.map(book => {
+      return (
+        <Book
+          key={book.iban}
+          name={book.name}
+          author={book.author}
+          remove={this.removeBook}
+        />
+      );
+    });
     return <div>{booklist}</div>;
   }
 }
