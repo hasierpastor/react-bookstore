@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Book from './Book';
+import AddBookForm from './AddBookForm';
 const uuidv4 = require('uuid/v1');
 
 class BookList extends Component {
@@ -23,11 +24,11 @@ class BookList extends Component {
     };
   }
 
-  // addBook = book => {
-  //   book.iban = uuidv4();
-  //   let newBooks = [...this.state.books, book];
-  //   this.setState({ books: newBooks });
-  // };
+  addBook = book => {
+    book.iban = uuidv4();
+    let newBooks = [...this.state.books, book];
+    this.setState({ books: newBooks });
+  };
 
   removeBook = name => {
     let filteredBooks = this.state.books.filter(book => {
@@ -47,7 +48,12 @@ class BookList extends Component {
         />
       );
     });
-    return <div>{booklist}</div>;
+    return (
+      <div>
+        <AddBookForm add={this.addBook} />
+        {booklist}
+      </div>
+    );
   }
 }
 
