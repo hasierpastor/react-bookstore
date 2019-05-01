@@ -22,6 +22,19 @@ class BookList extends Component {
       ]
     };
   }
+
+  addBook = book => {
+    book.iban = uuidv4();
+    let newBooks = [...this.state.books, book];
+    this.setState({ books: newBooks });
+  };
+  removeBook = name => {
+    let filteredBooks = this.state.books.filter(book => {
+      return book.name !== name;
+    });
+    this.setState({ books: filteredBooks });
+  };
+
   render() {
     const booklist = this.state.books.map(book => (
       <Book key={book.iban} name={book.name} author={book.author} />
