@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './BookList.js';
+import Book from './Book.js';
 const uuidv4 = require('uuid/v1');
 
 class BookList extends Component {
@@ -21,6 +21,14 @@ class BookList extends Component {
         }
       ]
     };
+  }
+  render() {
+    const books = this.state.books.map(book => (
+      <Book key={this.state.iban} name={this.state.name}>
+        , author={this.state.author}>
+      </Book>
+    ));
+    return <div>books</div>;
   }
 }
 
