@@ -23,12 +23,10 @@ class BookList extends Component {
     };
   }
   render() {
-    const books = this.state.books.map(book => (
-      <Book key={this.state.iban} name={this.state.name}>
-        , author={this.state.author}>
-      </Book>
+    const booklist = this.state.books.map(book => (
+      <Book key={book.iban} name={book.name} author={book.author} />
     ));
-    return <div>books</div>;
+    return <div>{booklist}</div>;
   }
 }
 
