@@ -37,7 +37,13 @@ class BookList extends Component {
 
   render() {
     const booklist = this.state.books.map(book => (
-      <Book key={book.iban} name={book.name} author={book.author} />
+      <Book
+        key={book.iban}
+        name={book.name}
+        author={book.author}
+        add={this.addBook}
+        remove={this.removeBook}
+      />
     ));
     return <div>{booklist}</div>;
   }
